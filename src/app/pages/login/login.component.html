@@ -1,0 +1,98 @@
+<div class="wrapper" [ngClass]="{'active': expression}">
+
+    <span class="icon-close" (click)=" cerrarComponenteYVolver()">
+        <mat-icon >close</mat-icon>
+    </span>
+
+    <div class="form-box login">
+        <h2>Login</h2>
+        <form [formGroup]="formLogin" (ngSubmit)="submitLogin()">
+
+            <div class="input-box">
+                <span class="icon"><mat-icon >email</mat-icon></span>
+                <input type="text" 
+                formControlName='email'
+                required>
+                <label >Email</label>
+            </div>
+
+            <div class="remember-forgot" [class.hide]="!formLogin.get('email')?.touched">
+                <label *ngIf="formLogin.controls.email.getError('required')">email requerido</label>
+                <label *ngIf="formLogin.controls.email.getError('email')">email no valido</label>
+            </div>
+
+            <div class="input-box">
+                <span class="icon" (click)="changeMode()"><mat-icon >{{mode==="password" ? 'lock':'lock_open'}}</mat-icon></span>
+                <input type={{mode}} 
+                formControlName='password'
+                required>
+                <label>Password</label>
+            </div>
+
+            <div class="remember-forgot" [class.hide]="!formLogin.get('password')?.touched">
+                <label *ngIf="formLogin.controls.password.getError('required')">password requerido</label>
+                <label *ngIf="formLogin.controls.password.getError('minlength')">debe contener al menos 5 caracteres</label>
+            </div>
+        
+            <button type="submit" class="btn" [disabled]="!formLogin.valid">Login</button>
+
+            <div class="login-register">
+                <p>¿No eres miembro todavía?<a class="register-link" (click)="changeLogin()">Registrate aqui</a></p>
+            </div>
+        
+        </form>
+    </div>
+
+    <div class="form-box register">
+        <h2>Registro</h2>
+        <form [formGroup]="formRegister" (ngSubmit)="submitRegister()">
+
+            <div class="input-box">
+                <span class="icon"><mat-icon >person</mat-icon></span>
+                <input type="text" 
+                formControlName='name'
+                required>
+                <label >Usuario</label>
+            </div>
+
+            <div class="remember-forgot" [class.hide]="!formRegister.get('name')?.touched">
+                <label *ngIf="formRegister.controls.name.getError('required')">nombre requerido</label>
+            </div>
+        
+
+            <div class="input-box">
+                <span class="icon"><mat-icon >email</mat-icon></span>
+                <input type="text"
+                formControlName='email'
+                required>
+                <label >Email</label>
+            </div>
+
+            <div class="remember-forgot" [class.hide]="!formRegister.get('email')?.touched">
+                <label *ngIf="formRegister.controls.email.getError('required')">email requerido</label>
+                <label *ngIf="formRegister.controls.email.getError('email')">email invalido</label>
+            </div>
+
+            <div class="input-box">
+                <span class="icon" (click)="changeMode()" ><mat-icon>{{mode==="password" ? 'lock':'lock_open'}}</mat-icon></span>
+                <input type={{mode}}  
+                formControlName='password'
+                required>
+                <label>Password</label>
+            </div>
+            
+            <div class="remember-forgot" [class.hide]="!formRegister.get('password')?.touched">
+                <label *ngIf="formRegister.controls.password.getError('required')">password requerido</label>
+                <label *ngIf="formRegister.controls.password.getError('minlength')">debe contener al menos 5 caracteres</label>
+            </div>
+            
+            <button type="submit" class="btn" [disabled]="!formRegister.valid">Registrarse</button>
+
+            <div class="login-register">
+                <p>¿Ya es miembro?<a class="login-link" (click)="changeLogin()">Presione aqui</a></p>
+            </div>
+        
+        </form>
+    </div>
+
+</div>
