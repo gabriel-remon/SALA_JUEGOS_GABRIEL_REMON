@@ -37,7 +37,7 @@
     animation: slideBotom 1s ease forwards;
     animation-delay: .5s;
 }
-.home-content h3 span{
+strong{
     color: #0ef;
 }
 
@@ -59,11 +59,17 @@
 }
 
 .home-img{
+    margin-left: 10px;
     max-width: 450px;
     opacity:0 ;
     animation: zoomIn 1s ease forwards, floatImage 4s
     ease-in-out infinite;
     animation-delay: 2s, 3s;
+}
+img{
+    width: 350px;
+    height: auto;
+    border-radius: 20%;
 }
 
 .social-media a{
@@ -82,7 +88,7 @@
     transition: .5s ease;
     opacity:0 ;
     animation: slideLeft 1s ease forwards;
-    animation-delay: 1s;
+    animation-delay: 1s ;
     text-decoration: none;
 }
 
