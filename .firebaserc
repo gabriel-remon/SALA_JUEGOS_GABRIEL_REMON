@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "saladejuegosrg-df69a"
+  },
+  "targets": {
+    "saladejuegosrg-df69a": {
+      "hosting": {
+        "salajuegos": [
+          "saladejuegosrg-df69a"
+        ]
+      }
+    }
   }
 }

@@ -3,6 +3,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { LocalStorageService } from '../../services/local-storage.service';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { FireServiceService } from '../../services/fire-service.service';
+import { User } from '../../models/user';
+import { getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -25,16 +28,20 @@ export class LoginComponent {
   })
   
   localStorage = inject(LocalStorageService)
+//firebaseSrc=inject(FireServiceService)
 
   submitLogin(){
-   
+    let user = this.formLogin.value as User
+    //const res = this.localStorage.login(this.formLogin.value)?"usuario logeado":"no se encontro el usuario"
+    signInWithEmailAndPassword(getAuth(),user.email,user.password).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
     
-    const res = this.localStorage.login(this.formLogin.value)?"usuario logeado":"no se encontro el usuario"
-    alert(res)
   }
   submitRegister(){
-    alert((this.localStorage.register( this.formRegister.value)?
-      "registro exitoso":"no se puedo registrar"))
+    
   }
 
   expression=false
