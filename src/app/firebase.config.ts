@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
 
 const firebaseProviders: EnvironmentProviders = importProvidersFrom(
     provideFirebaseApp(() => 
-      initializeApp(environment.firebase),
+      initializeApp(environment),
                     ),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())

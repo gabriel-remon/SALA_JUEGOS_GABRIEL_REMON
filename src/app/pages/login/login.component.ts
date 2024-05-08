@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { FireServiceService } from '../../services/fire-service.service';
 import { User } from '../../models/user';
-import { getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -27,17 +27,26 @@ export class LoginComponent {
     password: new FormControl('',[Validators.required,Validators.minLength(5)]),
   })
   
+  constructor(public auth: Auth) {
+  }
+
+  Login() {
+    
+  }
+
   localStorage = inject(LocalStorageService)
-//firebaseSrc=inject(FireServiceService)
 
   submitLogin(){
     let user = this.formLogin.value as User
-    //const res = this.localStorage.login(this.formLogin.value)?"usuario logeado":"no se encontro el usuario"
-    signInWithEmailAndPassword(getAuth(),user.email,user.password).then(res=>{
+    console.log(user.email)
+    console.log(user.password)
+    signInWithEmailAndPassword(this.auth, user.email, user.password).then((res) => {
+      //if (res.user.email !== null) this.loggedUser = res.user.email;
       console.log(res)
-    }).catch(err=>{
-      console.log(err)
-    })
+    }).catch((e) => console.log(e))
+    //this.firebaseSrc.login(user.email,user.password)
+    //const res = this.localStorage.login(this.formLogin.value)?"usuario logeado":"no se encontro el usuario"
+
     
   }
   submitRegister(){
